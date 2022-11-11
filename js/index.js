@@ -45,6 +45,11 @@ input.addEventListener("keydown", (event) => {
         diff++;
       }
     }
+    if (diff === 1) {
+      //fetch funckiton
+    } else {
+      console.log();
+    }
   } else {
     console.log("Wrong");
   }
