@@ -12,13 +12,48 @@ const startWord = document.querySelector(".startWord");
 const endWord = document.querySelector(".endWord");
 const inputBox = document.querySelector(".inputBox");
 
+/////////////////////////////
+async function checkWord(word) {
+  const BASE_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
+  try {
+    const response = await fetch(`${BASE_URL}${word}`);
+    return response.status;
+  } catch (err) {
+    console.log("not valid word");
+  }
+}
+
+// 1, Fix input letter toUpperCase - KLAR
+// 2. Remove numbers from input field -
+// 3. Save correct words on a list -
+// 4. Check winner -
+// 5. Check spelling with API -
+// 6. BONUS create High Score list -
+
+function checkIfLetter(event) {
+  const key = event.keyCode;
+
+  if ((key >= 65 && key <= 90) || key == 8) {
+    console.log("SKRIV UT ORDET: ");
+  } else {
+    alert("Wrong letter - Try again!");
+  }
+  console.log("input id: ", event.target.id);
+  console.log(event);
+  console.log(event.keyCode);
+}
+
 function creatInputFields(numberOfLetters, word) {
   console.log("första ordet i kombon: ", word[0]);
 
-  for (let i = 0; i < word.length; i++) {
-    console.log(i);
+  for (let i = 0; i < numberOfLetters; i++) {
+    // console.log(i);
     let inputField = document.createElement("input");
     inputField.placeholder = word[i];
+    inputField.setAttribute("maxlength", "1");
+    inputField.setAttribute("id", `${i}`);
+
+    inputField.addEventListener("keyup", (event) => checkIfLetter(event));
     inputBox.appendChild(inputField);
   }
 }
