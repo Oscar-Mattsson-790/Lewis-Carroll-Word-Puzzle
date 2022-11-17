@@ -11,7 +11,6 @@ const button = document.querySelector(".btn");
 const startWord = document.querySelector(".startWord");
 const endWord = document.querySelector(".endWord");
 const inputBox = document.querySelector(".inputBox");
-const BASE_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
 // 2. Remove numbers from input field -
 // 3. Save correct words on a list -
