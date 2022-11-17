@@ -11,19 +11,8 @@ const button = document.querySelector(".btn");
 const startWord = document.querySelector(".startWord");
 const endWord = document.querySelector(".endWord");
 const inputBox = document.querySelector(".inputBox");
+const BASE_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
-/////////////////////////////
-async function checkWord(word) {
-  const BASE_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
-  try {
-    const response = await fetch(`${BASE_URL}${word}`);
-    return response.status;
-  } catch (err) {
-    console.log("not valid word");
-  }
-}
-
-// 1, Fix input letter toUpperCase - KLAR
 // 2. Remove numbers from input field -
 // 3. Save correct words on a list -
 // 4. Check winner -
@@ -36,6 +25,8 @@ function checkIfLetter(event) {
   if ((key >= 65 && key <= 90) || key == 8) {
     console.log("SKRIV UT ORDET: ");
   } else {
+    event.target.value = wordCombinations.combo1[0][event.target.id];
+    console.log("Inmatning: ", event.target.id);
     alert("Wrong letter - Try again!");
   }
   console.log("input id: ", event.target.id);
@@ -52,7 +43,6 @@ function creatInputFields(numberOfLetters, word) {
     inputField.placeholder = word[i];
     inputField.setAttribute("maxlength", "1");
     inputField.setAttribute("id", `${i}`);
-
     inputField.addEventListener("keyup", (event) => checkIfLetter(event));
     inputBox.appendChild(inputField);
   }
